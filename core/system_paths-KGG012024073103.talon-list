@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: KGG012024073103
+-
+user: /Users/simeoncheeseman
+desktop: /Users/simeoncheeseman/Desktop
+desk: /Users/simeoncheeseman/Desktop
+documents: /Users/simeoncheeseman/Documents
+docks: /Users/simeoncheeseman/Documents
+downloads: /Users/simeoncheeseman/Downloads
+music: /Users/simeoncheeseman/Music
+pictures: /Users/simeoncheeseman/Pictures
+videos: /Users/simeoncheeseman/Videos
+talon home: /Users/simeoncheeseman/.talon
+talon recordings: /Users/simeoncheeseman/.talon/recordings
+talon user: /Users/simeoncheeseman/.talon/user
+home: /Users/simeoncheeseman

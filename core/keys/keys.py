@@ -104,6 +104,22 @@ def letters(m) -> str:
 
 
 ctx = Context()
+modifier_keys = {
+    # If you find 'alt' is often misrecognized, try using 'alter'.
+    "alt": "alt",  #'alter': 'alt',
+    "control": "ctrl",  #'troll':   'ctrl',
+    "shift": "shift",  #'sky':     'shift',
+    "super": "super",
+    "wipe": "backspace",
+    "delete": "delete",
+    "chomp": "delete",
+    "page up": "pageup",
+    "page down": "pagedown",
+}
+if app.platform == "mac":
+    modifier_keys["command"] = "cmd"
+    modifier_keys["option"] = "alt"
+ctx.lists["self.modifier_key"] = modifier_keys
 
 # `punctuation_words` is for words you want available BOTH in dictation and as key names in command mode.
 # `symbol_key_words` is for key names that should be available in command mode, but NOT during dictation.
@@ -119,6 +135,7 @@ punctuation_words = {
     "period": ".",
     "full stop": ".",
     "semicolon": ";",
+    "semi": ";",
     "colon": ":",
     "forward slash": "/",
     "question mark": "?",
@@ -148,15 +165,9 @@ symbol_key_words = {
     "apostrophe": "'",
     "L square": "[",
     "left square": "[",
-    "brack": "[",
-    "bracket": "[",
-    "left bracket": "[",
     "square": "[",
     "R square": "]",
     "right square": "]",
-    "r brack": "]",
-    "r bracket": "]",
-    "right bracket": "]",
     "slash": "/",
     "backslash": "\\",
     "minus": "-",
@@ -168,12 +179,26 @@ symbol_key_words = {
     "bang": "!",
     "down score": "_",
     "underscore": "_",
+    "score": "_",
     "paren": "(",
+    "round": "(",
+    "L paren": "(",
+    "L round": "(",
+    "left paren": "(",
+    "left round": "(",
+    "R paren": ")",
+    "R round": ")",
+    "right paren": ")",
+    "right round": ")",
     "brace": "{",
+    "curly": "{",
     "left brace": "{",
+    "left curly": "{",
+    "brack": "{",
     "curly bracket": "{",
     "left curly bracket": "{",
     "r brace": "}",
+    "r curly": "}",
     "right brace": "}",
     "r curly bracket": "}",
     "right curly bracket": "}",

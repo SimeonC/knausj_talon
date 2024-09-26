@@ -31,7 +31,8 @@ settings():
 
 (op | is) strict equal: " === "
 (op | is) strict not equal: " !== "
-op null else: " ?? "
+op (null | nullish | nulled): " ?? "
+op as: " as "
 
 state const: "const "
 
@@ -42,6 +43,7 @@ state var: "var "
 state export: "export "
 
 state async: "async "
+state void: "void "
 
 state await: "await "
 
@@ -55,3 +57,10 @@ state reduce: app.notify('ERROR: Command deprecated; please use "dot reduce"')
 state spread: "..."
 
 from import: user.insert_between(' from  "', '"')
+
+self: "this."
+
+# Talon doesn't support this yet :(
+# self invoke <user.cursorless_target>:
+#     user.cursorless_command("callAsFunction", cursorless_target)
+#     user.cursorless_command("setSelection", "call")
