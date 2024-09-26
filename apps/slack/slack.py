@@ -2,6 +2,7 @@ from talon import Context, Module, actions
 
 ctx = Context()
 mod = Module()
+mod.mode("slack_huddle", f"mode for when a slack huddle is being participated in")
 apps = mod.apps
 apps.slack = "app.name: Slack"
 mod.apps.slack = """

@@ -284,6 +284,18 @@ ctx.lists["user.window_snap_positions"] = _snap_positions.keys()
 
 @mod.action_class
 class Actions:
+    def snap_to_full_with_stage_manager() -> None:
+        """Make active window fullscreen with stage manager showing on left."""
+        window = ui.active_window()
+        screen = window.screen.visible_rect
+
+        _set_window_pos(
+            window,
+            x=screen.x + 120,
+            y=screen.y,
+            width=screen.width - 120,
+            height=screen.height,
+        )
     def snap_window(position: RelativeScreenPos) -> None:
         """Move the active window to a specific position on its current screen, given a `RelativeScreenPos` object."""
         _snap_window_helper(ui.active_window(), position)

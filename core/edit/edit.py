@@ -1,4 +1,9 @@
 from talon import Context, Module, actions, clip, settings
+import subprocess
+
+def write_to_clipboard(output):
+    cmd='echo '+output.strip()+'|pbcopy -pboard font'
+    return subprocess.check_call(cmd, shell=True)
 
 ctx = Context()
 mod = Module()
@@ -81,11 +86,8 @@ class Actions:
     def paste(text: str):
         """Pastes text and preserves clipboard"""
 
-        with clip.revert():
-            clip.set_text(text)
-            actions.edit.paste()
-            # sleep here so that clip.revert doesn't revert the clipboard too soon
-            actions.sleep("150ms")
+        write_to_clipboard(text)
+        actions.key("cmd-v")
 
     def delete_right():
         """Delete character to the right"""

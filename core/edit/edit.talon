@@ -46,6 +46,15 @@ select down: edit.extend_line_down()
 
 select word left: edit.extend_word_left()
 select word right: edit.extend_word_right()
+wipe word:
+    edit.select_word()
+    key(delete)
+wipe word left:
+    edit.extend_word_left()
+    key(delete)
+wipe word right:
+  edit.extend_word_right()
+  key(delete)
 
 select way left: edit.extend_line_start()
 select way right: edit.extend_line_end()
@@ -154,10 +163,12 @@ new line below | slap: edit.line_insert_down()
 
 # Undo/redo
 undo that: edit.undo()
+nope: edit.undo()
 redo that: edit.redo()
 
 # Save
 file save: edit.save()
 file save all: edit.save_all()
+disk: edit.save_all()
 
 [go] line mid: user.line_middle()

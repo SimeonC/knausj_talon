@@ -1,6 +1,7 @@
 # https://help.github.com/en/github/getting-started-with-github/keyboard-shortcuts
 tag: browser
-browser.host: github.com
+browser.host: /github\.com/
+win.title: /github\.com/
 -
 
 # site wide shortcuts
@@ -51,6 +52,7 @@ parent commit: key(p)
 other parent commit: key(o)
 
 # notifications
+mark done: key(e)
 mark as read: key(y)
 (thread mute | mute thread): key(shift-m)
 
@@ -68,3 +70,25 @@ label set: key(l)
 go to workflow: insert("gf")
 timestamps toggle: key(shift-t)
 fullscreen toggle: key(shift-f)
+
+# custom injected shortcuts
+mark viewed: key(cmd-alt-ctrl-shift-v)
+mark all viewed: key(cmd-alt-ctrl-shift-z)
+view next: key(cmd-alt-ctrl-shift-w)
+
+# only works on arc browser
+slack request review:
+    # copy url link
+    key(cmd-shift-c)
+    sleep(200ms)
+    user.switcher_focus("Slack")
+    sleep(400ms)
+    key(cmd-k)
+    sleep(200ms)
+    insert("dev-frontend")
+    sleep(50ms)
+    key(enter)
+    sleep(200ms)
+    insert("Need +2 reviews on this PR please :bow: ")
+    key(enter)
+    edit.paste()

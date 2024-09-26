@@ -13,8 +13,8 @@ focus (move | next): key(ctrl-`)
 (section | zone) (previous | last): key(shift-f6)
 (slack | lack) [direct] messages: key(cmd-shift-k)
 (slack | lack) threads: key(cmd-shift-t)
-(slack | lack) (history [next] | back | backward): key(cmd-[)
-(slack | lack) forward: key(cmd-])
+(slack | lack) (history [next] | back | backward)|go back: key(cmd-[)
+(slack | lack | go) forward: key(cmd-])
 (element | bit) [next]: key(tab)
 (element | bit) (previous | last): key(shift-tab)
 (slack | lack) (my stuff | activity): key(cmd-shift-m)
@@ -45,7 +45,7 @@ bold: key(cmd-b)
 (slack | lack) invite: key(a)
 # Miscellaneous
 (slack | lack) shortcuts: key(cmd-/)
-emote <user.text>: "{text}"
+emote <user.text>: ":{text}"
 toggle left sidebar: key(cmd-shift-d)
 toggle right sidebar: key(cmd-.)
 
@@ -65,3 +65,22 @@ toggle right sidebar: key(cmd-.)
 (previous | last) (element | bit):
     app.notify("please use the voice command 'element last' instead of 'last element'")
     key(shift-tab)
+
+huddle (start|join):
+    mode.enable("user.slack_huddle")
+    mode.disable("command")
+    key(cmd-shift-h)
+    speech.disable()
+huddle activate:
+    mode.enable("user.slack_huddle")
+    mode.disable("command")
+    speech.disable()
+huddle clear:
+    mode.disable("user.slack_huddle")
+    mode.enable("command")
+    speech.enable()
+huddle quit:
+    mode.disable("user.slack_huddle")
+    mode.enable("command")
+    key(cmd-shift-h)
+    speech.enable()

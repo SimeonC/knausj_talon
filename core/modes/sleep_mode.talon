@@ -34,3 +34,7 @@ settings():
     user.mouse_wake()
     user.history_enable()
     user.talon_mode()
+
+^(talon wake)+$: speech.enable()
+key(alt-cmd-ctrl-shift-f13):
+    speech.enable()

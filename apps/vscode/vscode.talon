@@ -6,11 +6,31 @@ tag(): user.line_commands
 tag(): user.multiple_cursors
 tag(): user.splits
 tag(): user.tabs
-window reload: user.vscode("workbench.action.reloadWindow")
-window close: user.vscode("workbench.action.closeWindow")
+(window reload|space reload): user.vscode("workbench.action.reloadWindow")
+(window close|space close): user.vscode("workbench.action.closeWindow")
 #multiple_cursor.py support end
+space (switch|change): user.vscode("workbench.action.switchWindow")
+space next:
+    user.vscode("workbench.action.switchWindow")
+    sleep(100ms)
+    key(enter)
+space prev:
+    user.vscode("workbench.action.switchWindow")
+    sleep(100ms)
+    key(up)
+    key(up)
+    key(enter)
 
-please [<user.text>]:
+cross: user.split_next()
+cross prev: user.split_last()
+
+tab {self.letter} [{self.letter}]:
+    user.run_rpc_command("andreas.focusTab", "{letter_1}{letter_2 or ''}")
+tab close {self.letter} [{self.letter}]:
+    user.run_rpc_command("andreas.focusTab", "{letter_1}{letter_2 or ''}")
+    user.tab_close_wrapper()
+
+please [<user.text>]$:
     user.vscode("workbench.action.showCommands")
     insert(user.text or "")
 
@@ -26,7 +46,18 @@ bar run: user.vscode("workbench.view.debug")
 bar search: user.vscode("workbench.view.search")
 bar source: user.vscode("workbench.view.scm")
 bar test: user.vscode("workbench.view.testing.focus")
-bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
+bar (switch|show): user.vscode("workbench.action.toggleSidebarVisibility")
+bar (switch|show): user.vscode("workbench.action.toggleSidebarVisibility")
+
+outer hide:
+    user.vscode("workbench.action.closeSidebar")
+    user.vscode("workbench.action.closeAuxiliaryBar")
+    user.vscode("workbench.action.closePanel")
+outer show:
+    user.vscode("workbench.action.toggleSidebarVisibility")
+    user.vscode("workbench.action.terminal.focus")
+
+focus terminal: user.vscode("workbench.action.terminal.focus")
 
 # Symbol search
 symbol hunt [<user.text>]:
@@ -44,7 +75,6 @@ panel control: user.vscode("workbench.panel.repl.view.focus")
 panel output: user.vscode("workbench.panel.output.focus")
 panel problems: user.vscode("workbench.panel.markers.view.focus")
 panel switch: user.vscode("workbench.action.togglePanel")
-panel terminal: user.vscode("workbench.action.terminal.focus")
 focus editor: user.vscode("workbench.action.focusActiveEditorGroup")
 
 # Settings
@@ -69,7 +99,7 @@ theme switch: user.vscode("workbench.action.selectTheme")
 wrap switch: user.vscode("editor.action.toggleWordWrap")
 zen switch: user.vscode("workbench.action.toggleZenMode")
 
-# File Commands
+# File Command
 file hunt [<user.text>]:
     user.vscode("workbench.action.quickOpen")
     sleep(50ms)
@@ -120,8 +150,9 @@ rename that: user.vscode("editor.action.rename")
 refactor that: user.vscode("editor.action.refactor")
 whitespace trim: user.vscode("editor.action.trimTrailingWhitespace")
 language switch: user.vscode("workbench.action.editor.changeLanguageMode")
-refactor rename: user.vscode("editor.action.rename")
+refactor rename: usenr.vscode("editor.action.rename")
 refactor this: user.vscode("editor.action.refactor")
+extract this: user.vscode("editor.action.codeAction")
 
 #code navigation
 (go declaration | follow): user.vscode("editor.action.revealDefinition")
@@ -281,12 +312,71 @@ curse redo: user.vscode("cursorRedo")
 
 select word: user.vscode("editor.action.addSelectionToNextFindMatch")
 skip word: user.vscode("editor.action.moveSelectionToNextFindMatch")
+scout next: key(cmd-g)
+scout prev: key(cmd-shift-g)
 
-# jupyter
-cell next: user.vscode("notebook.focusNextEditor")
+(symbol|cymbal) scout [<phrase>]:
+    user.vscode('workbench.action.gotoSymbol')
+    sleep(50ms)
+    insert(user.formatted_text(phrase or "", "PRIVATE_CAMEL_CASE"))
+(symbol|cymbal) scout all [<phrase>]:
+    user.vscode('workbench.action.showAllSymbols')
+    sleep(50ms)
+    insert(user.formatted_text(phrase or "", "PRIVATE_CAMEL_CASE"))
+
+
+complete: key(ctrl-space)
+
+show in finder: user.vscode("revealFileInOS")
+
+next: user.vscode("jumpToNextSnippetPlaceholder")
+snip last: user.vscode("jumpToPrevSnippetPlaceholder")
+skip:
+    key("backspace")
+    user.vscode("jumpToNextSnippetPlaceholder")
+previous: user.vscode("jumpToPrevSnippetPlaceholder")
+
+(duplicate | dupe): user.vscode("editor.action.duplicateSelection")
+fix format: user.vscode("eslint.executeAutofix")
+
+copy pen:
+    key(cmd-a)
+    sleep(50ms)
+    key(cmd-c)
+    sleep(50ms)
+    user.switcher_focus("Safari")
+
+swap line up: key(alt-shift-up)
 cell last: user.vscode("notebook.focusPreviousEditor")
-cell run above: user.vscode("notebook.cell.executeCellsAbove")
+swap line down: key(alt-shift-down)
 cell run: user.vscode("notebook.cell.execute")
+
+run last task: key(f5)
+run last terminal:
+    user.vscode("workbench.action.terminal.focus")
+    key(up)
+    key(enter)
+cursorless record: user.vscode("cursorless.recordTestCase")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 preview markdown: user.vscode("markdown.showPreview")
+
+# Co Pilot
+pilot chat [<phrase>]:
+    user.vscode("inlineChat.start")
+    sleep(50ms)
+    insert(phrase or "")
+pilot (suggest|complete): user.vscode("editor.action.inlineSuggest.trigger")
+pilot generate: user.vscode("github.copilot.generate")
+pilot accept: user.vscode("editor.action.inlineSuggest.commit")
+pilot accept word: user.vscode("editor.action.inlineSuggest.acceptNextWord")
+pilot accept line: user.vscode("editor.action.inlineSuggest.acceptNextLine")
+pilot dismiss: user.vscode("editor.action.inlineSuggest.hide")
+pilot next: user.vscode("editor.action.inlineSuggest.showNext")
+pilot (prev|previous): user.vscode("editor.action.inlineSuggest.showPrevious")
+pilot (toolbar|toggle): user.vscode("editor.action.inlineSuggest.toggleAlwaysShowToolbar")
+
+presentation (mode|toggle|start|stop|end): user.vscode("presentation-mode.toggle")
+
+live start: user.vscode("liveshare.start")
+live end: user.vscode("liveshare.end")

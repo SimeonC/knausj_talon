@@ -79,6 +79,11 @@ settings():
     # 'size aware' keeps absolute window size the same, except full-height or
     # -width windows are resized to stay full-height/width.
     # user.window_snap_screen = "size aware"
+    # minimum silence time (in seconds) before speech is cut off, default 0.3
+    speech.timeout = 0.45
+
+
+tag(): user.cursorless_experimental_snippets
 
     # Puts Talon into sleep mode if no commands are spoken for a defined period of time.
     # user.listening_timeout_minutes = 3

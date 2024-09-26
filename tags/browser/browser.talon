@@ -4,7 +4,7 @@ tag(): user.navigation
 
 address bar | go address | go url: browser.focus_address()
 go page | page focus: browser.focus_page()
-address copy | url copy | copy address | copy url:
+(copy|get) (address|url|link):
     browser.focus_address()
     sleep(50ms)
     edit.copy()
@@ -30,3 +30,4 @@ show downloads: browser.show_downloads()
 show extensions: browser.show_extensions()
 show history: browser.show_history()
 show cache: browser.show_clear_cache()
+
