@@ -1,6 +1,6 @@
-window full:
+window (maximize|fullscreen):
     # user.snap_to_full_with_stage_manager()
-    key(alt-cmd-ctrl-shift-enter):
+    key(alt-cmd-ctrl-shift-enter)
 
 check slack:
     user.switcher_focus("Slack")

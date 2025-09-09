@@ -55,6 +55,7 @@ wipe word left:
 wipe word right:
   edit.extend_word_right()
   key(delete)
+chomp: key(delete)
 
 # Indentation
 indent [more]: edit.indent_more()

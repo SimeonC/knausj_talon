@@ -29,7 +29,7 @@ github <user.text>:
 open (code|dev) <user.text>:
   key(cmd-space)
   sleep(100ms)
-  insert("code ")
+  insert("cur ")
   insert(user.text)
   sleep(500ms)
   key(enter)

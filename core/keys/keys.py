@@ -112,7 +112,6 @@ modifier_keys = {
     "super": "super",
     "wipe": "backspace",
     "delete": "delete",
-    "chomp": "delete",
     "page up": "pageup",
     "page down": "pagedown",
 }

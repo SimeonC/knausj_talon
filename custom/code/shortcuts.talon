@@ -11,6 +11,9 @@ line drip [<phrase>]:
     insert(',')
     key(enter)
     user.parse_phrase(phrase or "")
+args:
+    insert('()')
+    key(left)
 box|square:
     insert('[]')
     key(left)
