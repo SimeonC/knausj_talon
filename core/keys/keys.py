@@ -1,6 +1,19 @@
 from talon import Context, Module, actions, app
 
+from .symbols import (
+    dragon_punctuation_dict,
+    punctuation_dict,
+    symbol_key_dict,
+)
+
 mod = Module()
+ctx = Context()
+
+ctx_dragon = Context()
+ctx_dragon.matches = r"""
+speech.engine: dragon
+"""
+
 mod.list("letter", desc="The spoken phonetic alphabet")
 mod.list("symbol_key", desc="All symbols from the keyboard")
 mod.list("arrow_key", desc="All arrow keys")
@@ -103,125 +116,13 @@ def letters(m) -> str:
     return "".join(m.letter_list)
 
 
-ctx = Context()
-modifier_keys = {
-    # If you find 'alt' is often misrecognized, try using 'alter'.
-    "alt": "alt",  #'alter': 'alt',
-    "control": "ctrl",  #'troll':   'ctrl',
-    "shift": "shift",  #'sky':     'shift',
-    "super": "super",
-    "wipe": "backspace",
-    "delete": "delete",
-    "page up": "pageup",
-    "page down": "pagedown",
-}
-if app.platform == "mac":
-    modifier_keys["command"] = "cmd"
-    modifier_keys["option"] = "alt"
-ctx.lists["self.modifier_key"] = modifier_keys
+@mod.action_class
+class Actions:
+    def get_punctuation_words():
+        """Gets the user.punctuation list"""
+        return punctuation_dict
 
-# `punctuation_words` is for words you want available BOTH in dictation and as key names in command mode.
-# `symbol_key_words` is for key names that should be available in command mode, but NOT during dictation.
-punctuation_words = {
-    # TODO: I'm not sure why we need these, I think it has something to do with
-    # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    "`": "`",
-    ",": ",",  # <== these things
-    "back tick": "`",
-    "comma": ",",
-    # Workaround for issue with conformer b-series; see #946
-    "coma": ",",
-    "period": ".",
-    "full stop": ".",
-    "semicolon": ";",
-    "semi": ";",
-    "colon": ":",
-    "forward slash": "/",
-    "question mark": "?",
-    "exclamation mark": "!",
-    "exclamation point": "!",
-    "asterisk": "*",
-    "hash sign": "#",
-    "number sign": "#",
-    "percent sign": "%",
-    "at sign": "@",
-    "and sign": "&",
-    "ampersand": "&",
-    # Currencies
-    "dollar sign": "$",
-    "pound sign": "£",
-    "hyphen": "-",
-    "L paren": "(",
-    "left paren": "(",
-    "R paren": ")",
-    "right paren": ")",
-}
-symbol_key_words = {
-    "dot": ".",
-    "point": ".",
-    "quote": "'",
-    "question": "?",
-    "apostrophe": "'",
-    "L square": "[",
-    "left square": "[",
-    "square": "[",
-    "R square": "]",
-    "right square": "]",
-    "slash": "/",
-    "backslash": "\\",
-    "minus": "-",
-    "dash": "-",
-    "equals": "=",
-    "plus": "+",
-    "grave": "`",
-    "tilde": "~",
-    "bang": "!",
-    "down score": "_",
-    "underscore": "_",
-    "score": "_",
-    "paren": "(",
-    "round": "(",
-    "L paren": "(",
-    "L round": "(",
-    "left paren": "(",
-    "left round": "(",
-    "R paren": ")",
-    "R round": ")",
-    "right paren": ")",
-    "right round": ")",
-    "brace": "{",
-    "curly": "{",
-    "left brace": "{",
-    "left curly": "{",
-    "brack": "{",
-    "curly bracket": "{",
-    "left curly bracket": "{",
-    "r brace": "}",
-    "r curly": "}",
-    "right brace": "}",
-    "r curly bracket": "}",
-    "right curly bracket": "}",
-    "angle": "<",
-    "left angle": "<",
-    "less than": "<",
-    "rangle": ">",
-    "R angle": ">",
-    "right angle": ">",
-    "greater than": ">",
-    "star": "*",
-    "hash": "#",
-    "percent": "%",
-    "caret": "^",
-    "amper": "&",
-    "pipe": "|",
-    "dub quote": '"',
-    "double quote": '"',
-    # Currencies
-    "dollar": "$",
-    "pound": "£",
-}
 
-# make punctuation words also included in {user.symbol_keys}
-symbol_key_words.update(punctuation_words)
-ctx.lists["self.punctuation"] = punctuation_words
-ctx.lists["self.symbol_key"] = symbol_key_words
+ctx.lists["user.punctuation"] = punctuation_dict
+ctx.lists["user.symbol_key"] = symbol_key_dict
+ctx_dragon.lists["user.punctuation"] = dragon_punctuation_dict
