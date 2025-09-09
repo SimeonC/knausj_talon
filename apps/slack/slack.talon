@@ -70,3 +70,25 @@ toggle right sidebar: user.slack_toggle_right_sidebar()
 (previous | last) (element | bit):
     app.notify("please use the voice command 'element last' instead of 'last element'")
     key(shift-tab)
+
+# My Custom Commands
+huddle (start|join):
+    mode.enable("user.slack_huddle")
+    mode.disable("command")
+    user.slack_huddle()
+    speech.disable()
+    sound.set_microphone("None")
+huddle activate:
+    mode.enable("user.slack_huddle")
+    mode.disable("command")
+    speech.disable()
+    sound.set_microphone("None")
+huddle clear:
+    mode.disable("user.slack_huddle")
+    mode.enable("command")
+    speech.enable()
+huddle quit:
+    mode.disable("user.slack_huddle")
+    mode.enable("command")
+    user.slack_huddle()
+    speech.enable()

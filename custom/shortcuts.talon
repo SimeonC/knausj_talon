@@ -56,3 +56,5 @@ pick color: key(alt-cmd-ctrl-shift-p)
 
 compare copy: key(alt-cmd-ctrl-shift-2)
 compare copy with: key(alt-cmd-ctrl-shift-3)
+
+chomp: key(delete)
