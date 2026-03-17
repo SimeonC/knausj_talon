@@ -5,4 +5,7 @@ mod = Module()
 @mod.capture(rule="opus | sonnet | haiku")
 def claude_model(m) -> str:
     """Claude model name"""
-    return str(m)
+    word = str(m)
+    if word == "opus":
+        return "opus[1m]"
+    return word

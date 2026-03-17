@@ -62,8 +62,6 @@ compare copy with: key(alt-cmd-ctrl-shift-3)
 
 chomp: key(delete)
 
-claude next: key(ctrl-alt-shift-cmd-tab)
-
 browser: user.switcher_focus("Vivaldi")
 
 key(alt-cmd-ctrl-shift-n):
