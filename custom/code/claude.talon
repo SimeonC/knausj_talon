@@ -11,7 +11,7 @@ mode: dictation
 ^(claude|clawed) send$:
     key(enter)
 
-^(claude|clawed) (clear|off)$:
+^(claude|clawed) off$:
     mode.disable("dictation")
     mode.enable("command")
     key(ctrl-c)
