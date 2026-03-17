@@ -43,7 +43,7 @@ mode: dictation
 ^(claude|clawed) next$:
     key(ctrl-alt-shift-cmd-tab)
 
-^(claude|clawed) close$:
+^(claude|clawed) (close|exit)$:
     insert('/exit')
     sleep(100ms)
     key(enter)
@@ -54,7 +54,7 @@ mode: dictation
     insert('exit')
     key(enter)
 
-^(claude|clawed) close container$:
+^(claude|clawed) (close|exit) container$:
     insert('/exit')
     sleep(100ms)
     key(enter)
