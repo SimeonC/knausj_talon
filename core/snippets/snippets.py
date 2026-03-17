@@ -108,6 +108,10 @@ class Actions:
         # which would undo the escaping
         return body.replace("\\", "\\\\").replace("$", "\\$")
 
+    def get_snippet_names() -> list[str]:
+        """Get the snippet names"""
+        return [snippet_name for snippet_name in snippets_map]
+
 
 def get_preferred_snippet(snippets: list[Snippet]) -> Snippet:
     lang: Union[str, set[str]] = actions.code.language()
@@ -175,7 +179,7 @@ def update_snippets():
 
 
 def update_contexts(language_to_lists: dict[str, SnippetLists]):
-    global_lists = language_to_lists[GLOBAL_ID] or SnippetLists()
+    global_lists = language_to_lists.get(GLOBAL_ID, SnippetLists())
 
     for lang, lists in language_to_lists.items():
         if lang not in languages_state_map:
