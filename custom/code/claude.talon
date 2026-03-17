@@ -25,7 +25,7 @@ mode: dictation
 ^(claude|clawed) fast$:
     insert("/model haiku\n")
 
-^(claude|clawed) (think|slow)$:
+^(claude|clawed) (think|thinking|slow)$:
     insert("/model opus[1m]\n")
 
 ^(claude|clawed) <user.claude_model>$:
