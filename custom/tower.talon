@@ -1,5 +1,5 @@
 os: mac
-app: Tower
+app: Ghostty
 -
 show services: key(ctrl-cmd-s)
 show repos: key(ctrl-cmd-r)

@@ -13,7 +13,6 @@ space next: key(cmd-alt-right)
 space (last|prev): key(cmd-alt-left)
 space <number>: key("ctrl-{number}")
 
-(copy|get) (address|url|link): key(cmd-shift-c)
 (copy|get) markdown (address|url|link): key(cmd-shift-alt-c)
 change url: key(cmd-l)
 [toggle] ((dev|developer) tools|console): key(cmd-alt-i)

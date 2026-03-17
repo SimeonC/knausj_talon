@@ -12,7 +12,10 @@ alfred this: key(alt-cmd-ctrl-shift-space)
   key(alt-cmd-ctrl-shift-1)
   sleep(200ms)
   insert(user.text or "")
-meetings: key(alt-cmd-ctrl-shift-e)
+meetings:
+  key(cmd-space)
+  sleep(100ms)
+  insert("meetings")
 clippy: key(alt-cmd-ctrl-shift-c)
 ^command <number>$: key("cmd-number}")
 exec <user.text>:
@@ -58,3 +61,21 @@ compare copy: key(alt-cmd-ctrl-shift-2)
 compare copy with: key(alt-cmd-ctrl-shift-3)
 
 chomp: key(delete)
+
+claude next: key(ctrl-alt-shift-cmd-tab)
+
+browser: user.switcher_focus("Vivaldi")
+
+key(alt-cmd-ctrl-shift-n):
+  user.switcher_focus("Vivaldi")
+  sleep(200ms)
+  key(cmd-t)
+  mode.disable("command")
+  mode.enable("dictation")
+
+web search:
+  user.switcher_focus("Vivaldi")
+  sleep(200ms)
+  key(cmd-t)
+  mode.disable("command")
+  mode.enable("dictation")

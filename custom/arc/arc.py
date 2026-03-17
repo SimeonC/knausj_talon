@@ -40,6 +40,9 @@ class user_actions:
         actions.sleep("180ms")
         actions.key("alt-enter")
 
+    def address_copy_address():
+        actions.key("cmd-shift-c")
+
 
 @ctx.action_class("browser")
 class browser_actions:

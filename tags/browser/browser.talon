@@ -5,10 +5,7 @@ tag(): user.find
 tag(): user.navigation
 
 go page | page focus: browser.focus_page()
-(copy|get) (address|url|link):
-    browser.focus_address()
-    sleep(50ms)
-    edit.copy()
+(copy|get) (address|url|link): user.address_copy_address()
 go home: browser.go_home()
 go private: browser.open_private_window()
 

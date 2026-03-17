@@ -10,4 +10,6 @@ settings():
 
 key(alt-cmd-ctrl-shift-f13):
     speech.enable()
+    mode.enable("command")
+    mode.disable("dictation")
     sound.set_microphone("System Default")

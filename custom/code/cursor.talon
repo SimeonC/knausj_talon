@@ -13,13 +13,13 @@ mode: dictation
     user.vscode("aipopup.action.modal.generate")
     mode.disable("command")
     mode.enable("dictation")
-^except|accept$:
+^ except | accept $:
     key(cmd-enter)
     mode.disable("dictation")
     mode.enable("command")
 ^vibe send$:
     key(enter)
-^vibe (clear|off)$:
+^vibe (clear | off)$:
     mode.disable("dictation")
     mode.enable("command")
     key(esc)
@@ -34,18 +34,18 @@ mode: dictation
     user.vscode("editor.action.inlineDiffs.nextChange")
 ^prev change$:
     user.vscode("editor.action.inlineDiffs.previousChange")
-^(accept|except) this$:
+^(accept | except) (this | change)$:
     user.vscode("editor.action.inlineDiffs.acceptPartialEdit")
-    user.vscode("editor.action.inlineDiffs.nextChange")
-^(accept|except) all$:
+^(accept | except) (all | file | all changes)$:
     user.vscode("editor.action.inlineDiffs.acceptAll")
-^(reject|throw) this$:
+^(reject | throw) (this | change)$:
     user.vscode("editor.action.inlineDiffs.rejectPartialEdit")
-    user.vscode("editor.action.inlineDiffs.nextChange")
-^(reject|throw) (all|file)$:
+^(reject | throw) (all | file | all changes)$:
     key(cmd-backspace)
 ^nope$:
     key(cmd-z)
 ^clear all$:
     key(cmd-a)
     key(backspace)
+
+^toggle agent view$: user.vscode("cursor.toggleAgentWindowIDEUnification")

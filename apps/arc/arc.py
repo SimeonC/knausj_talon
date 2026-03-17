@@ -26,6 +26,9 @@ class UserActions:
             actions.sleep("200ms")
             actions.insert(command)
 
+    def address_copy_address():
+        actions.key("cmd-shift-c")
+
 
 @ctx.action_class("browser")
 class BrowserActions:
