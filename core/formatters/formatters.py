@@ -243,6 +243,7 @@ formatter_list = [
     CodeFormatter("ALL_SLASHES", "/", lambda text: f"/{text.lower()}", lower),
     CodeFormatter("DOUBLE_UNDERSCORE", "__", lower, lower),
     CodeFormatter("DOUBLE_COLON_SEPARATED", "::", lower, lower),
+    CustomFormatter("EMOJI", lambda text: f":{text}:"),
 ]
 
 formatters_dict = {f.id: f for f in formatter_list}

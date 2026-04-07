@@ -10,10 +10,11 @@ __pycache__
 .DS_Store
 *.bak
 # Emacs (from https://github.com/github/gitignore/blob/main/Global/Emacs.gitignore)
-*.talon-list
+system_*.talon-list
 *~
 \#*\#
 .\#*
 # Vim (from https://github.com/github/gitignore/blob/main/Global/Vim.gitignore)
 [._]*.swp
 /settings
+/custom/wispr_bridge/wispr-flow-bridge

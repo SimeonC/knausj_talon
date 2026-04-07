@@ -20,53 +20,45 @@ mode: dictation
     key(ctrl-c)
 
 ^(claude|clawed) plan$:
-    insert("/plan\n")
+    insert("/plan \n")
 
 ^(claude|clawed) fast$:
-    insert("/model haiku\n")
+    insert("/model haiku \n")
 
 ^(claude|clawed) (think|thinking|slow)$:
-    insert("/model opus[1m]\n")
+    insert("/model opus[1m] \n")
 
 ^(claude|clawed) <user.claude_model>$:
-    insert("/model {user.claude_model}\n")
+    insert("/model {user.claude_model} \n")
 
 ^(claude|clawed) compact$:
-    insert("/compact\n")
+    insert("/compact \n")
 
 ^(claude|clawed) clear$:
-    insert("/clear\n")
+    insert("/clear \n")
 
 ^(claude|clawed) undo$:
-    insert("/undo\n")
+    insert("/undo \n")
 
 ^(claude|clawed) next$:
     key(ctrl-alt-shift-cmd-tab)
 
-^(claude|clawed) (close|exit)$:
-    insert('/exit')
-    sleep(100ms)
-    key(enter)
+^(claude|clawed) exit$:
+    insert('/exit \n')
+    sleep(1000ms)
+    insert('exit \n')
     sleep(500ms)
-    insert('exit')
-    key(enter)
-    sleep(500ms)
-    insert('exit')
-    key(enter)
+    insert('exit \n')
 
-^(claude|clawed) (close|exit) container$:
-    insert('/exit')
-    sleep(100ms)
-    key(enter)
+^(claude|clawed) container exit$:
+    insert('/exit \n')
+    sleep(1000ms)
+    insert('exit \n')
     sleep(500ms)
-    insert('exit')
-    key(enter)
+    insert('exit \n')
+    insert('exit \n')
     sleep(500ms)
-    insert('exit')
-    key(enter)
-    sleep(500ms)
-    insert('exit')
-    key(enter)
+    insert('exit \n')
 
 ^(claude|clawed) (switch|model) <user.claude_model>$:
-    insert("/model {user.claude_model}\n")
+    insert("/model {user.claude_model} \n")
